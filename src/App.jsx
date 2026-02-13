@@ -555,7 +555,7 @@ function ProgressRing({ progress, size = 36, stroke = 3, color }) {
   const offset = circ - (progress / 100) * circ;
   return (
     <svg width={size} height={size} style={{ transform: "rotate(-90deg)" }}>
-      <circle cx={size/2} cy={size/2} r={r} fill="none" stroke="#1e293b" strokeWidth={stroke} />
+      <circle cx={size/2} cy={size/2} r={r} fill="none" stroke="#e2e8f0" strokeWidth={stroke} />
       <circle cx={size/2} cy={size/2} r={r} fill="none" stroke={color} strokeWidth={stroke}
         strokeDasharray={circ} strokeDashoffset={offset}
         strokeLinecap="round" style={{ transition: "stroke-dashoffset 0.5s ease" }} />
@@ -572,14 +572,14 @@ function Sidebar({ state, dispatch }) {
     <div style={{
       width: state.sidebarOpen ? 300 : 0,
       minWidth: state.sidebarOpen ? 300 : 0,
-      background: "#0f172a",
-      borderRight: "1px solid #1e293b",
+      background: "#f8fafc",
+      borderRight: "1px solid #e2e8f0",
       overflow: "hidden",
       transition: "all 0.3s ease",
       display: "flex",
       flexDirection: "column",
     }}>
-      <div style={{ padding: "20px 20px 16px", borderBottom: "1px solid #1e293b" }}>
+      <div style={{ padding: "20px 20px 16px", borderBottom: "1px solid #e2e8f0" }}>
         <div style={{ display: "flex", alignItems: "center", gap: 10, marginBottom: 16 }}>
           <div style={{
             width: 34, height: 34, borderRadius: 8,
@@ -588,20 +588,20 @@ function Sidebar({ state, dispatch }) {
             fontSize: 16, fontWeight: 800, color: "#fff",
           }}>DA</div>
           <div>
-            <div style={{ fontSize: 16, fontWeight: 700, color: "#f1f5f9", letterSpacing: "-0.01em" }}>Dev Academy</div>
-            <div style={{ fontSize: 11, color: "#64748b", marginTop: 1 }}>The Development Landscape</div>
+            <div style={{ fontSize: 18, fontWeight: 700, color: "#1e293b", letterSpacing: "-0.01em" }}>Dev Academy</div>
+            <div style={{ fontSize: 13, color: "#64748b", marginTop: 1 }}>The Development Landscape</div>
           </div>
         </div>
         <button onClick={() => dispatch({ type: "SHOW_DASHBOARD" })} style={{
-          width: "100%", background: "#1e293b", border: "none", borderRadius: 8, padding: "10px 12px",
+          width: "100%", background: "#e2e8f0", border: "none", borderRadius: 8, padding: "10px 12px",
           cursor: "pointer", display: "flex", alignItems: "center", gap: 10, transition: "background 0.2s"
         }}
-        onMouseEnter={e => e.currentTarget.style.background = "#334155"}
-        onMouseLeave={e => e.currentTarget.style.background = "#1e293b"}>
+        onMouseEnter={e => e.currentTarget.style.background = "#cbd5e1"}
+        onMouseLeave={e => e.currentTarget.style.background = "#e2e8f0"}>
           <ProgressRing progress={pct} color="#3b82f6" />
           <div style={{ textAlign: "left" }}>
-            <div style={{ fontSize: 12, fontWeight: 600, color: "#e2e8f0" }}>{pct}% Complete</div>
-            <div style={{ fontSize: 11, color: "#64748b" }}>{completed} of {totalLessons} lessons</div>
+            <div style={{ fontSize: 14, fontWeight: 600, color: "#1e293b" }}>{pct}% Complete</div>
+            <div style={{ fontSize: 13, color: "#64748b" }}>{completed} of {totalLessons} lessons</div>
           </div>
         </button>
       </div>
@@ -613,13 +613,13 @@ function Sidebar({ state, dispatch }) {
           return (
             <div key={phase.id} style={{ marginBottom: 4 }}>
               <div style={{ padding: "8px 20px", display: "flex", alignItems: "center", gap: 8 }}>
-                <span style={{ fontSize: 14 }}>{phase.icon}</span>
+                <span style={{ fontSize: 16 }}>{phase.icon}</span>
                 <div style={{ flex: 1 }}>
-                  <div style={{ fontSize: 11, fontWeight: 700, color: phase.color, textTransform: "uppercase", letterSpacing: "0.05em" }}>
+                  <div style={{ fontSize: 13, fontWeight: 700, color: phase.color, textTransform: "uppercase", letterSpacing: "0.05em" }}>
                     {phase.title}
                   </div>
                 </div>
-                <span style={{ fontSize: 10, color: "#64748b" }}>{phasePct}%</span>
+                <span style={{ fontSize: 12, color: "#64748b" }}>{phasePct}%</span>
               </div>
               {phase.lessons.map(lesson => {
                 const isActive = state.currentLesson === lesson.id;
@@ -631,22 +631,22 @@ function Sidebar({ state, dispatch }) {
                     style={{
                       width: "100%", border: "none", textAlign: "left", cursor: "pointer",
                       padding: "8px 20px 8px 40px",
-                      background: isActive ? "#1e293b" : "transparent",
+                      background: isActive ? "#e2e8f0" : "transparent",
                       borderLeft: isActive ? `2px solid ${phase.color}` : "2px solid transparent",
                       transition: "all 0.15s",
                     }}
-                    onMouseEnter={e => { if (!isActive) e.currentTarget.style.background = "#1e293b50" }}
+                    onMouseEnter={e => { if (!isActive) e.currentTarget.style.background = "#f1f5f9" }}
                     onMouseLeave={e => { if (!isActive) e.currentTarget.style.background = "transparent" }}
                   >
                     <div style={{ display: "flex", alignItems: "center", gap: 8 }}>
-                      <span style={{ fontSize: 13, width: 18, textAlign: "center", color: isDone ? "#10b981" : "#64748b" }}>
+                      <span style={{ fontSize: 15, width: 18, textAlign: "center", color: isDone ? "#10b981" : "#94a3b8" }}>
                         {isDone ? "✓" : quizResult && !quizResult.passed ? "○" : "·"}
                       </span>
                       <div>
-                        <div style={{ fontSize: 13, color: isActive ? "#f1f5f9" : isDone ? "#94a3b8" : "#cbd5e1", fontWeight: isActive ? 600 : 400 }}>
+                        <div style={{ fontSize: 15, color: isActive ? "#1e293b" : isDone ? "#64748b" : "#334155", fontWeight: isActive ? 600 : 400 }}>
                           {lesson.title}
                         </div>
-                        <div style={{ fontSize: 11, color: "#475569", marginTop: 1 }}>{lesson.summary}</div>
+                        <div style={{ fontSize: 13, color: "#94a3b8", marginTop: 1 }}>{lesson.summary}</div>
                       </div>
                     </div>
                   </button>
@@ -669,24 +669,24 @@ function CodeBlock({ language, label, value }) {
     }).catch(() => {});
   };
   return (
-    <div style={{ margin: "16px 0", borderRadius: 8, overflow: "hidden", border: "1px solid #1e293b" }}>
+    <div style={{ margin: "16px 0", borderRadius: 8, overflow: "hidden", border: "1px solid #e2e8f0" }}>
       <div style={{
-        background: "#1e293b", padding: "8px 14px",
+        background: "#f1f5f9", padding: "8px 14px",
         display: "flex", justifyContent: "space-between", alignItems: "center"
       }}>
-        <span style={{ fontSize: 12, color: "#94a3b8", fontWeight: 500 }}>{label || language}</span>
+        <span style={{ fontSize: 14, color: "#64748b", fontWeight: 500 }}>{label || language}</span>
         <button onClick={handleCopy} style={{
-          background: "none", border: "1px solid #334155", color: "#94a3b8",
-          padding: "3px 10px", borderRadius: 4, fontSize: 11, cursor: "pointer", transition: "all 0.2s"
+          background: "none", border: "1px solid #cbd5e1", color: "#64748b",
+          padding: "3px 10px", borderRadius: 4, fontSize: 13, cursor: "pointer", transition: "all 0.2s"
         }}
-        onMouseEnter={e => { e.currentTarget.style.borderColor = "#64748b"; e.currentTarget.style.color = "#e2e8f0" }}
-        onMouseLeave={e => { e.currentTarget.style.borderColor = "#334155"; e.currentTarget.style.color = "#94a3b8" }}>
+        onMouseEnter={e => { e.currentTarget.style.borderColor = "#94a3b8"; e.currentTarget.style.color = "#334155" }}
+        onMouseLeave={e => { e.currentTarget.style.borderColor = "#cbd5e1"; e.currentTarget.style.color = "#64748b" }}>
           {copied ? "Copied!" : "Copy"}
         </button>
       </div>
       <pre style={{
-        background: "#0c0f1a", padding: 16, margin: 0, overflow: "auto",
-        fontSize: 13, lineHeight: 1.6, color: "#e2e8f0",
+        background: "#1e293b", padding: 16, margin: 0, overflow: "auto",
+        fontSize: 15, lineHeight: 1.6, color: "#e2e8f0",
         fontFamily: "'JetBrains Mono', 'Fira Code', 'Consolas', monospace",
       }}>
         <code>{value}</code>
@@ -699,13 +699,13 @@ function ConceptCard({ label, value }) {
   return (
     <div style={{
       margin: "16px 0", padding: "16px 20px", borderRadius: 8,
-      background: "linear-gradient(135deg, #1e293b 0%, #0f172a 100%)",
+      background: "#eff6ff",
       borderLeft: "3px solid #3b82f6",
     }}>
-      <div style={{ fontSize: 12, fontWeight: 700, color: "#3b82f6", textTransform: "uppercase", letterSpacing: "0.05em", marginBottom: 6 }}>
+      <div style={{ fontSize: 14, fontWeight: 700, color: "#3b82f6", textTransform: "uppercase", letterSpacing: "0.05em", marginBottom: 6 }}>
         {label}
       </div>
-      <div style={{ fontSize: 14, color: "#cbd5e1", lineHeight: 1.7, whiteSpace: "pre-line" }}>{value}</div>
+      <div style={{ fontSize: 16, color: "#334155", lineHeight: 1.7, whiteSpace: "pre-line" }}>{value}</div>
     </div>
   );
 }
@@ -715,27 +715,27 @@ function ComparisonTable({ items }) {
     <div style={{ margin: "20px 0", display: "flex", flexDirection: "column", gap: 12 }}>
       {items.map((item, i) => (
         <div key={i} style={{
-          background: "#0f172a", border: "1px solid #1e293b", borderRadius: 10, padding: 20,
-          transition: "border-color 0.2s",
+          background: "#ffffff", border: "1px solid #e2e8f0", borderRadius: 10, padding: 20,
+          transition: "border-color 0.2s", boxShadow: "0 1px 3px rgba(0,0,0,0.05)",
         }}>
           <div style={{ display: "flex", justifyContent: "space-between", alignItems: "start", marginBottom: 10 }}>
-            <h4 style={{ fontSize: 16, fontWeight: 700, color: "#f1f5f9", margin: 0 }}>{item.name}</h4>
+            <h4 style={{ fontSize: 18, fontWeight: 700, color: "#1e293b", margin: 0 }}>{item.name}</h4>
           </div>
-          <div style={{ fontSize: 12, color: "#94a3b8", marginBottom: 12, lineHeight: 1.5 }}>
-            <strong style={{ color: "#64748b" }}>Use when:</strong> {item.when}
+          <div style={{ fontSize: 14, color: "#64748b", marginBottom: 12, lineHeight: 1.5 }}>
+            <strong style={{ color: "#475569" }}>Use when:</strong> {item.when}
           </div>
           <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 12, marginBottom: 10 }}>
             <div>
-              <div style={{ fontSize: 11, fontWeight: 600, color: "#10b981", textTransform: "uppercase", letterSpacing: "0.05em", marginBottom: 4 }}>Strengths</div>
-              <div style={{ fontSize: 13, color: "#cbd5e1", lineHeight: 1.6 }}>{item.strengths}</div>
+              <div style={{ fontSize: 13, fontWeight: 600, color: "#10b981", textTransform: "uppercase", letterSpacing: "0.05em", marginBottom: 4 }}>Strengths</div>
+              <div style={{ fontSize: 15, color: "#334155", lineHeight: 1.6 }}>{item.strengths}</div>
             </div>
             <div>
-              <div style={{ fontSize: 11, fontWeight: 600, color: "#f59e0b", textTransform: "uppercase", letterSpacing: "0.05em", marginBottom: 4 }}>Weaknesses</div>
-              <div style={{ fontSize: 13, color: "#cbd5e1", lineHeight: 1.6 }}>{item.weaknesses}</div>
+              <div style={{ fontSize: 13, fontWeight: 600, color: "#f59e0b", textTransform: "uppercase", letterSpacing: "0.05em", marginBottom: 4 }}>Weaknesses</div>
+              <div style={{ fontSize: 15, color: "#334155", lineHeight: 1.6 }}>{item.weaknesses}</div>
             </div>
           </div>
           {item.example && (
-            <div style={{ fontSize: 12, color: "#64748b", borderTop: "1px solid #1e293b", paddingTop: 8 }}>
+            <div style={{ fontSize: 14, color: "#64748b", borderTop: "1px solid #e2e8f0", paddingTop: 8 }}>
               <strong>Example:</strong> {item.example}
             </div>
           )}
@@ -759,21 +759,21 @@ function LessonView({ state, dispatch }) {
 
   return (
     <div style={{ maxWidth: 780, margin: "0 auto", padding: "40px 40px 80px" }}>
-      <div style={{ fontSize: 12, color: "#64748b", marginBottom: 8, display: "flex", alignItems: "center", gap: 6 }}>
+      <div style={{ fontSize: 14, color: "#64748b", marginBottom: 8, display: "flex", alignItems: "center", gap: 6 }}>
         <span style={{ color: phase.color }}>{phase.icon} {phase.title}</span>
         <span>›</span>
         <span>{lesson.title}</span>
       </div>
 
-      <h1 style={{ fontSize: 28, fontWeight: 700, color: "#f1f5f9", marginBottom: 6, letterSpacing: "-0.02em" }}>
+      <h1 style={{ fontSize: 30, fontWeight: 700, color: "#1e293b", marginBottom: 6, letterSpacing: "-0.02em" }}>
         {lesson.title}
       </h1>
-      <p style={{ fontSize: 15, color: "#94a3b8", marginBottom: 32 }}>{lesson.summary}</p>
+      <p style={{ fontSize: 17, color: "#64748b", marginBottom: 32 }}>{lesson.summary}</p>
 
       {lesson.content.map((block, i) => {
         if (block.type === "text") {
-          return <p key={i} style={{ fontSize: 15, color: "#cbd5e1", lineHeight: 1.8, marginBottom: 16 }}
-            dangerouslySetInnerHTML={{ __html: block.value.replace(/\*\*(.*?)\*\*/g, '<strong style="color:#f1f5f9">$1</strong>').replace(/`(.*?)`/g, '<code style="background:#1e293b;padding:2px 6px;border-radius:4px;font-size:13px;color:#93c5fd">$1</code>') }} />;
+          return <p key={i} style={{ fontSize: 17, color: "#334155", lineHeight: 1.8, marginBottom: 16 }}
+            dangerouslySetInnerHTML={{ __html: block.value.replace(/\*\*(.*?)\*\*/g, '<strong style="color:#1e293b">$1</strong>').replace(/`(.*?)`/g, '<code style="background:#f1f5f9;padding:2px 6px;border-radius:4px;font-size:15px;color:#3b82f6">$1</code>') }} />;
         }
         if (block.type === "code") return <CodeBlock key={i} language={block.language} label={block.label} value={block.value} />;
         if (block.type === "concept") return <ConceptCard key={i} label={block.label} value={block.value} />;
@@ -781,13 +781,13 @@ function LessonView({ state, dispatch }) {
         return null;
       })}
 
-      <div style={{ marginTop: 40, paddingTop: 24, borderTop: "1px solid #1e293b", display: "flex", justifyContent: "space-between", alignItems: "center", flexWrap: "wrap", gap: 12 }}>
+      <div style={{ marginTop: 40, paddingTop: 24, borderTop: "1px solid #e2e8f0", display: "flex", justifyContent: "space-between", alignItems: "center", flexWrap: "wrap", gap: 12 }}>
         <div style={{ display: "flex", gap: 8 }}>
           {prevLesson && (
             <button onClick={() => dispatch({ type: "SELECT_LESSON", id: prevLesson.id })}
-              style={{ background: "#1e293b", color: "#94a3b8", border: "none", padding: "10px 16px", borderRadius: 8, fontSize: 13, cursor: "pointer", transition: "all 0.2s" }}
-              onMouseEnter={e => { e.currentTarget.style.background = "#334155"; e.currentTarget.style.color = "#e2e8f0" }}
-              onMouseLeave={e => { e.currentTarget.style.background = "#1e293b"; e.currentTarget.style.color = "#94a3b8" }}>
+              style={{ background: "#f1f5f9", color: "#64748b", border: "1px solid #e2e8f0", padding: "10px 16px", borderRadius: 8, fontSize: 15, cursor: "pointer", transition: "all 0.2s" }}
+              onMouseEnter={e => { e.currentTarget.style.background = "#e2e8f0"; e.currentTarget.style.color = "#334155" }}
+              onMouseLeave={e => { e.currentTarget.style.background = "#f1f5f9"; e.currentTarget.style.color = "#64748b" }}>
               ← Previous
             </button>
           )}
@@ -795,26 +795,26 @@ function LessonView({ state, dispatch }) {
         <div style={{ display: "flex", gap: 8 }}>
           {!isCompleted && !lesson.quiz.length && (
             <button onClick={() => dispatch({ type: "COMPLETE_LESSON" })}
-              style={{ background: "#1e293b", color: "#10b981", border: "1px solid #10b981", padding: "10px 20px", borderRadius: 8, fontSize: 13, fontWeight: 600, cursor: "pointer" }}>
+              style={{ background: "#f0fdf4", color: "#10b981", border: "1px solid #10b981", padding: "10px 20px", borderRadius: 8, fontSize: 15, fontWeight: 600, cursor: "pointer" }}>
               Mark Complete ✓
             </button>
           )}
           {lesson.quiz.length > 0 && (
             <button onClick={() => dispatch({ type: "START_QUIZ" })}
               style={{
-                background: isCompleted ? "#1e293b" : "#3b82f6",
+                background: isCompleted ? "#f1f5f9" : "#3b82f6",
                 color: isCompleted ? "#3b82f6" : "#fff",
                 border: isCompleted ? "1px solid #3b82f6" : "none",
-                padding: "10px 20px", borderRadius: 8, fontSize: 13, fontWeight: 600, cursor: "pointer",
+                padding: "10px 20px", borderRadius: 8, fontSize: 15, fontWeight: 600, cursor: "pointer",
               }}>
               {quizResult ? (quizResult.passed ? "Retake Quiz" : "Try Again") : "Take Quiz"}
             </button>
           )}
           {nextLesson && (
             <button onClick={() => dispatch({ type: "SELECT_LESSON", id: nextLesson.id })}
-              style={{ background: "#1e293b", color: "#94a3b8", border: "none", padding: "10px 16px", borderRadius: 8, fontSize: 13, cursor: "pointer", transition: "all 0.2s" }}
-              onMouseEnter={e => { e.currentTarget.style.background = "#334155"; e.currentTarget.style.color = "#e2e8f0" }}
-              onMouseLeave={e => { e.currentTarget.style.background = "#1e293b"; e.currentTarget.style.color = "#94a3b8" }}>
+              style={{ background: "#f1f5f9", color: "#64748b", border: "1px solid #e2e8f0", padding: "10px 16px", borderRadius: 8, fontSize: 15, cursor: "pointer", transition: "all 0.2s" }}
+              onMouseEnter={e => { e.currentTarget.style.background = "#e2e8f0"; e.currentTarget.style.color = "#334155" }}
+              onMouseLeave={e => { e.currentTarget.style.background = "#f1f5f9"; e.currentTarget.style.color = "#64748b" }}>
               Next →
             </button>
           )}
@@ -824,10 +824,10 @@ function LessonView({ state, dispatch }) {
       {quizResult && (
         <div style={{
           marginTop: 16, padding: "12px 16px", borderRadius: 8,
-          background: quizResult.passed ? "#052e16" : "#451a03",
-          border: `1px solid ${quizResult.passed ? "#166534" : "#92400e"}`,
+          background: quizResult.passed ? "#f0fdf4" : "#fffbeb",
+          border: `1px solid ${quizResult.passed ? "#86efac" : "#fcd34d"}`,
         }}>
-          <span style={{ fontSize: 13, color: quizResult.passed ? "#86efac" : "#fbbf24" }}>
+          <span style={{ fontSize: 15, color: quizResult.passed ? "#166534" : "#92400e" }}>
             {quizResult.passed ? "✓ Passed!" : "Not quite —"} {quizResult.correct}/{quizResult.total} correct
           </span>
         </div>
@@ -843,14 +843,14 @@ function QuizView({ state, dispatch }) {
   return (
     <div style={{ maxWidth: 680, margin: "0 auto", padding: "40px 40px 80px" }}>
       <button onClick={() => dispatch({ type: "SELECT_LESSON", id: state.currentLesson })}
-        style={{ background: "none", border: "none", color: "#64748b", fontSize: 13, cursor: "pointer", marginBottom: 20, padding: 0 }}>
+        style={{ background: "none", border: "none", color: "#64748b", fontSize: 15, cursor: "pointer", marginBottom: 20, padding: 0 }}>
         ← Back to lesson
       </button>
 
-      <h2 style={{ fontSize: 22, fontWeight: 700, color: "#f1f5f9", marginBottom: 8 }}>
+      <h2 style={{ fontSize: 24, fontWeight: 700, color: "#1e293b", marginBottom: 8 }}>
         Quiz: {lesson.title}
       </h2>
-      <p style={{ fontSize: 14, color: "#94a3b8", marginBottom: 32 }}>
+      <p style={{ fontSize: 16, color: "#64748b", marginBottom: 32 }}>
         {state.quizSubmitted
           ? `You got ${state.quizResults[state.currentLesson]?.correct} out of ${lesson.quiz.length} correct.${state.quizResults[state.currentLesson]?.passed ? " Lesson marked complete!" : " You need 70% to pass."}`
           : `${lesson.quiz.length} questions · 70% to pass`
@@ -864,27 +864,28 @@ function QuizView({ state, dispatch }) {
 
         return (
           <div key={qi} style={{
-            marginBottom: 24, padding: 20, borderRadius: 10, background: "#0f172a",
-            border: `1px solid ${showResult ? (isCorrect ? "#166534" : "#92400e") : "#1e293b"}`,
+            marginBottom: 24, padding: 20, borderRadius: 10, background: "#ffffff",
+            border: `1px solid ${showResult ? (isCorrect ? "#86efac" : "#fcd34d") : "#e2e8f0"}`,
+            boxShadow: "0 1px 3px rgba(0,0,0,0.05)",
           }}>
-            <div style={{ fontSize: 14, fontWeight: 600, color: "#e2e8f0", marginBottom: 14 }}>
+            <div style={{ fontSize: 16, fontWeight: 600, color: "#1e293b", marginBottom: 14 }}>
               {qi + 1}. {q.question}
             </div>
             <div style={{ display: "flex", flexDirection: "column", gap: 8 }}>
               {q.options.map((opt, oi) => {
                 const isSelected = selected === oi;
                 const isAnswer = oi === q.answer;
-                let bg = "#1e293b", border = "1px solid #334155", color = "#cbd5e1";
-                if (showResult && isAnswer) { bg = "#052e16"; border = "1px solid #166534"; color = "#86efac"; }
-                else if (showResult && isSelected && !isCorrect) { bg = "#451a03"; border = "1px solid #92400e"; color = "#fbbf24"; }
-                else if (isSelected) { bg = "#1e3a5f"; border = "1px solid #3b82f6"; color = "#93c5fd"; }
+                let bg = "#f8fafc", border = "1px solid #e2e8f0", color = "#334155";
+                if (showResult && isAnswer) { bg = "#f0fdf4"; border = "1px solid #86efac"; color = "#166534"; }
+                else if (showResult && isSelected && !isCorrect) { bg = "#fffbeb"; border = "1px solid #fcd34d"; color = "#92400e"; }
+                else if (isSelected) { bg = "#eff6ff"; border = "1px solid #3b82f6"; color = "#1e40af"; }
 
                 return (
                   <button key={oi} disabled={state.quizSubmitted}
                     onClick={() => dispatch({ type: "ANSWER_QUIZ", index: qi, answer: oi })}
                     style={{
                       background: bg, border, color, padding: "10px 14px", borderRadius: 6,
-                      fontSize: 13, textAlign: "left", cursor: state.quizSubmitted ? "default" : "pointer",
+                      fontSize: 15, textAlign: "left", cursor: state.quizSubmitted ? "default" : "pointer",
                       transition: "all 0.15s", opacity: state.quizSubmitted && !isSelected && !isAnswer ? 0.5 : 1,
                     }}>
                     {opt}
@@ -893,7 +894,7 @@ function QuizView({ state, dispatch }) {
               })}
             </div>
             {showResult && (
-              <div style={{ marginTop: 12, padding: "10px 14px", background: "#1e293b", borderRadius: 6, fontSize: 13, color: "#94a3b8", lineHeight: 1.6 }}>
+              <div style={{ marginTop: 12, padding: "10px 14px", background: "#f8fafc", borderRadius: 6, fontSize: 15, color: "#475569", lineHeight: 1.6 }}>
                 {q.explanation}
               </div>
             )}
@@ -906,9 +907,9 @@ function QuizView({ state, dispatch }) {
           disabled={Object.keys(state.quizAnswers).length < lesson.quiz.length}
           onClick={() => dispatch({ type: "SUBMIT_QUIZ" })}
           style={{
-            background: Object.keys(state.quizAnswers).length < lesson.quiz.length ? "#334155" : "#3b82f6",
-            color: Object.keys(state.quizAnswers).length < lesson.quiz.length ? "#64748b" : "#fff",
-            border: "none", padding: "12px 28px", borderRadius: 8, fontSize: 14, fontWeight: 600,
+            background: Object.keys(state.quizAnswers).length < lesson.quiz.length ? "#e2e8f0" : "#3b82f6",
+            color: Object.keys(state.quizAnswers).length < lesson.quiz.length ? "#94a3b8" : "#fff",
+            border: "none", padding: "12px 28px", borderRadius: 8, fontSize: 16, fontWeight: 600,
             cursor: Object.keys(state.quizAnswers).length < lesson.quiz.length ? "not-allowed" : "pointer",
           }}>
           Submit Answers
@@ -927,8 +928,8 @@ function Dashboard({ state, dispatch }) {
 
   return (
     <div style={{ maxWidth: 780, margin: "0 auto", padding: "40px 40px 80px" }}>
-      <h1 style={{ fontSize: 28, fontWeight: 700, color: "#f1f5f9", marginBottom: 6 }}>Your Progress</h1>
-      <p style={{ fontSize: 15, color: "#94a3b8", marginBottom: 32 }}>The development landscape — organized by what each tool does and when to use it.</p>
+      <h1 style={{ fontSize: 30, fontWeight: 700, color: "#1e293b", marginBottom: 6 }}>Your Progress</h1>
+      <p style={{ fontSize: 17, color: "#64748b", marginBottom: 32 }}>The development landscape — organized by what each tool does and when to use it.</p>
 
       <div style={{ display: "grid", gridTemplateColumns: "repeat(3, 1fr)", gap: 16, marginBottom: 40 }}>
         {[
@@ -936,10 +937,10 @@ function Dashboard({ state, dispatch }) {
           { label: "Quizzes Passed", value: `${quizzesPassed}/${totalQuizzes}`, sub: "70% to pass" },
           { label: "Buckets", value: `${curriculum.length}`, sub: "technology categories" },
         ].map((stat, i) => (
-          <div key={i} style={{ background: "#0f172a", border: "1px solid #1e293b", borderRadius: 10, padding: 20 }}>
-            <div style={{ fontSize: 11, color: "#64748b", textTransform: "uppercase", letterSpacing: "0.05em", marginBottom: 6 }}>{stat.label}</div>
-            <div style={{ fontSize: 24, fontWeight: 700, color: "#f1f5f9" }}>{stat.value}</div>
-            <div style={{ fontSize: 12, color: "#64748b", marginTop: 2 }}>{stat.sub}</div>
+          <div key={i} style={{ background: "#ffffff", border: "1px solid #e2e8f0", borderRadius: 10, padding: 20, boxShadow: "0 1px 3px rgba(0,0,0,0.05)" }}>
+            <div style={{ fontSize: 13, color: "#64748b", textTransform: "uppercase", letterSpacing: "0.05em", marginBottom: 6 }}>{stat.label}</div>
+            <div style={{ fontSize: 26, fontWeight: 700, color: "#1e293b" }}>{stat.value}</div>
+            <div style={{ fontSize: 14, color: "#64748b", marginTop: 2 }}>{stat.sub}</div>
           </div>
         ))}
       </div>
@@ -949,17 +950,18 @@ function Dashboard({ state, dispatch }) {
         const phasePct = Math.round((phaseCompleted / phase.lessons.length) * 100);
         return (
           <div key={phase.id} style={{
-            marginBottom: 20, background: "#0f172a", border: "1px solid #1e293b",
-            borderRadius: 10, padding: 24, borderLeft: `3px solid ${phase.color}`
+            marginBottom: 20, background: "#ffffff", border: "1px solid #e2e8f0",
+            borderRadius: 10, padding: 24, borderLeft: `3px solid ${phase.color}`,
+            boxShadow: "0 1px 3px rgba(0,0,0,0.05)",
           }}>
             <div style={{ display: "flex", justifyContent: "space-between", alignItems: "start", marginBottom: 12 }}>
               <div>
-                <div style={{ fontSize: 16, fontWeight: 700, color: "#f1f5f9" }}>{phase.icon} {phase.title}</div>
-                <div style={{ fontSize: 13, color: "#94a3b8", marginTop: 2 }}>{phase.subtitle}</div>
+                <div style={{ fontSize: 18, fontWeight: 700, color: "#1e293b" }}>{phase.icon} {phase.title}</div>
+                <div style={{ fontSize: 15, color: "#64748b", marginTop: 2 }}>{phase.subtitle}</div>
               </div>
-              <div style={{ fontSize: 18, fontWeight: 700, color: phase.color }}>{phasePct}%</div>
+              <div style={{ fontSize: 20, fontWeight: 700, color: phase.color }}>{phasePct}%</div>
             </div>
-            <div style={{ background: "#1e293b", borderRadius: 4, height: 6, marginBottom: 16 }}>
+            <div style={{ background: "#e2e8f0", borderRadius: 4, height: 6, marginBottom: 16 }}>
               <div style={{ background: phase.color, borderRadius: 4, height: 6, width: `${phasePct}%`, transition: "width 0.5s ease" }} />
             </div>
             <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 8 }}>
@@ -970,17 +972,17 @@ function Dashboard({ state, dispatch }) {
                   <button key={lesson.id}
                     onClick={() => dispatch({ type: "SELECT_LESSON", id: lesson.id })}
                     style={{
-                      background: "#1e293b", border: "none", borderRadius: 6, padding: "10px 12px",
+                      background: "#f8fafc", border: "1px solid #e2e8f0", borderRadius: 6, padding: "10px 12px",
                       textAlign: "left", cursor: "pointer", transition: "all 0.15s", opacity: done ? 0.7 : 1,
                     }}
-                    onMouseEnter={e => e.currentTarget.style.background = "#334155"}
-                    onMouseLeave={e => e.currentTarget.style.background = "#1e293b"}>
+                    onMouseEnter={e => e.currentTarget.style.background = "#f1f5f9"}
+                    onMouseLeave={e => e.currentTarget.style.background = "#f8fafc"}>
                     <div style={{ display: "flex", alignItems: "center", gap: 6 }}>
-                      <span style={{ fontSize: 12, color: done ? "#10b981" : "#64748b" }}>{done ? "✓" : "○"}</span>
-                      <span style={{ fontSize: 13, color: done ? "#94a3b8" : "#e2e8f0" }}>{lesson.title}</span>
+                      <span style={{ fontSize: 14, color: done ? "#10b981" : "#94a3b8" }}>{done ? "✓" : "○"}</span>
+                      <span style={{ fontSize: 15, color: done ? "#64748b" : "#1e293b" }}>{lesson.title}</span>
                     </div>
                     {quiz && (
-                      <div style={{ fontSize: 11, color: "#64748b", marginLeft: 18, marginTop: 2 }}>
+                      <div style={{ fontSize: 13, color: "#64748b", marginLeft: 18, marginTop: 2 }}>
                         Quiz: {quiz.correct}/{quiz.total}
                       </div>
                     )}
@@ -1002,7 +1004,7 @@ export default function DevAcademy() {
   return (
     <div style={{
       display: "flex", height: "100vh", width: "100vw",
-      background: "#0a0e1a", color: "#e2e8f0",
+      background: "#f1f5f9", color: "#334155",
       fontFamily: "'Inter', -apple-system, BlinkMacSystemFont, sans-serif",
       overflow: "hidden",
     }}>
@@ -1012,10 +1014,11 @@ export default function DevAcademy() {
         onClick={() => dispatch({ type: "TOGGLE_SIDEBAR" })}
         style={{
           position: "fixed", top: 12, left: state.sidebarOpen ? 308 : 8,
-          zIndex: 50, background: "#1e293b", border: "1px solid #334155",
-          color: "#94a3b8", width: 28, height: 28, borderRadius: 6,
+          zIndex: 50, background: "#ffffff", border: "1px solid #e2e8f0",
+          color: "#64748b", width: 28, height: 28, borderRadius: 6,
           cursor: "pointer", display: "flex", alignItems: "center", justifyContent: "center",
           fontSize: 14, transition: "left 0.3s ease",
+          boxShadow: "0 1px 3px rgba(0,0,0,0.1)",
         }}>
         {state.sidebarOpen ? "‹" : "›"}
       </button>
